@@ -1,8 +1,10 @@
 package com.example.Eadmission.Controller;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,10 +29,12 @@ public class UserController {
 	
     @Autowired
     private AuthenticationManager authenticationManager;
-
-
+    
+    @Autowired 
+    private ModelMapper mapper;
+    
     @PostMapping("/authenticate")
-    public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {
+    public String generateToken(@RequestBody AuthRequest authRequest) throws BadCredentialsException {
     	logger.trace("Entering into the authenticate function");
     	logger.debug("Checking");
         try {
@@ -39,7 +43,7 @@ public class UserController {
             );
         } catch (Exception ex) {
         	logger.error("error occured while login");
-            throw new Exception("inavalid username/password");
+            throw new BadCredentialsException("inavalid username/password");
         }
         logger.info(" Authenticated Success Fully");
         return jwtUtil.generateToken(authRequest.getUsername());
@@ -49,7 +53,8 @@ public class UserController {
 
     //add
 	@PostMapping("/UserAdd")
-	public String createEmployee(@RequestBody UserModel detail) {
+	public String createEmployee(@RequestBody UserDTO user) {
+		UserModel detail = mapper.map(user, UserModel.class);
 		return userservice.createEmployee(detail);
 	}
 	

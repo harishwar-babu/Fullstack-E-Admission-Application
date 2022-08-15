@@ -1,5 +1,6 @@
 package com.example.Eadmission.Controller;
 import java.util.List;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +13,11 @@ import com.example.Eadmission.Service.ConfirmationServiceImpl;
 @RestController
 public class ConfirmationController {
 	@Autowired ConfirmationServiceImpl c1;
+	@Autowired private ModelMapper mapper;
 	@PostMapping("/confirm")
-	public String Message(@RequestBody ConfirmationModel detail)
+	public String Message(@RequestBody ConfirmationDTO cnfrm)
 	{
+		ConfirmationModel detail = mapper.map(cnfrm, ConfirmationModel.class);
 		return c1.SuccessMessage(detail);
 	}
 	

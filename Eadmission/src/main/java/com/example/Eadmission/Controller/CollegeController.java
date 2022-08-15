@@ -1,5 +1,7 @@
 package com.example.Eadmission.Controller;
 import java.util.List;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,10 +21,12 @@ import com.example.Eadmission.Service.*;
 public class CollegeController {
 	@Autowired CollegeServiceImpl c1;
 	@Autowired CollegeCrudRepo c2;
+	@Autowired private ModelMapper mapper;
 	//Adding colleges
 	@PostMapping("/AddClg")
-	public String addclg(@RequestBody CollegeModel detail)
+	public String addclg(@RequestBody CollegeDTO college)
 	{
+		CollegeModel detail = mapper.map(college, CollegeModel.class);
 		return c1.addClg(detail);
 	}
 	
@@ -44,7 +48,9 @@ public class CollegeController {
 	//update college
 	
 	@PutMapping("/Clgupdate/{id}")
-	public ResponseEntity<CollegeModel> updateDetail(@PathVariable String id, @RequestBody CollegeModel detail) {
+	public ResponseEntity<CollegeModel> updateDetail(@PathVariable String id, @RequestBody CollegeDTO update)
+	{
+		CollegeModel detail = mapper.map(update, CollegeModel.class);
 		return c1.updateDetail(id,detail);
 	}
 	

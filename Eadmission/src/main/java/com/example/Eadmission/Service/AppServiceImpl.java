@@ -25,13 +25,14 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public String submitAppln(ApplnModel detail)  {
 		logger.trace("Entering into submit Application method");
+		try {
 		UserModel u2=u1.findByEmail(detail.getEmail());
 		String email=detail.getEmail();
 		String name=detail.getName();
 		String mbno=detail.getMbno();
 		if(user.appcount(email, mbno,u2.getUsername())==1) {
 		logger.debug("Checking");
-		if(appcount(email,mbno,name))
+		if(appcount(email,mbno))
 		{
 			c1.save(detail);
 			String appid=detail.getId();
@@ -41,17 +42,24 @@ public class AppServiceImpl implements AppService {
 			e1.sendemail(email, sub, body);
 			logger.info("Application Submitted SuccessFully");
 			return "CHECK WITH YOUR MAIL!!!!";
-		}logger.error("Application can be submitted inly once");  return "YOU CAN SUBMIT ONLY ONCE";}
-		return "Enter a Valid Email and Mobile Number";
+		}logger.error("Application can be submitted inly once");  return "YOU CAN SUBMIT ONLY ONCE";
+		}
+		return "Enter a Valid Email and Mobile Number";}
+		catch(Exception ex) {
+			return "Not a Valid Email Does not Exists";
+		}
 	}
 	@Override
-	public boolean appcount(String email, String mbno,String name) {
-		int value=c2.appcount(email, mbno,name);
+	public boolean appcount(String email, String mbno) {
+		int value=c2.appcount(email, mbno);
 		if(value==0)
 		{
 			return true;
 		}
-		return false;
+		else
+		{
+			return false;
+		}
 	}
 	@Override
 	public List<ApplnModel> view()

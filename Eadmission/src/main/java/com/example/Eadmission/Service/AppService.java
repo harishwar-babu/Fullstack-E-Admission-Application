@@ -9,7 +9,7 @@ public interface AppService {
 
 	// check if the application already exists
 	
-	boolean appcount(String email, String mbno,String name);
+	boolean appcount(String email, String mbno);
 	
 	public List<ApplnModel> view();
 	

@@ -31,7 +31,7 @@ public class ConfirmationServiceImpl implements ConfirmationService {
 		String cname=college.getName();
 		String department=record.getDepartment();
 		logger.debug("Checking");
-		if(cc1.count(appid)==0 && Checker(appid,code)==true)
+		if(cc1.count(appid)==0 && Checker(appid,code))
 		{
 			cc2.save(detail);
 			final String sub = "Confirmation message for the Selection of the College";

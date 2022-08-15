@@ -1,10 +1,8 @@
 package com.example.Eadmission.Model;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-@Entity
-public class ConfirmationModel {
+public class ConfirmationDTO {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)private Long id;
 	private String appid;
@@ -27,15 +25,15 @@ public class ConfirmationModel {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public ConfirmationModel(Long id, String appid, String code) {
+	public ConfirmationDTO(Long id, String appid, String code) {
 		super();
 		this.id = id;
 		this.appid = appid;
 		this.code = code;
 	}
-	public ConfirmationModel()
+	public ConfirmationDTO()
 	{
 		super();
 	}
-	
+
 }

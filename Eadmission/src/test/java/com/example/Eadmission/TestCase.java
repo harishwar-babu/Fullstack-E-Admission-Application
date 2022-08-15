@@ -1,5 +1,5 @@
 package com.example.Eadmission;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ class TestCase {
 	private MockMvc mockMvc;
 	ObjectMapper objectmapper=new ObjectMapper();
 	ObjectWriter obj=objectmapper.writer();
-	@Before
+	@BeforeEach
 	public void setUp()
 	{
 		mockMvc=MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
@@ -104,7 +104,7 @@ class TestCase {
 	}
 	
 	@Test 
-	public void Confirm() throws Exception
+	void Confirm() throws Exception
 	{
 		ConfirmationModel cnfrm=new ConfirmationModel();
 		cnfrm.setAppid("UEA202213323");
@@ -166,7 +166,7 @@ class TestCase {
 	
 	@Test
 	
-	public void viewcollegebyidandviewusers() throws Exception
+	void viewcollegebyidandviewusers() throws Exception
 	{
 		// View College By id
 		MockHttpServletRequestBuilder mvc=MockMvcRequestBuilders
@@ -187,7 +187,7 @@ class TestCase {
 	
 	@Test 
 	
-	public void deleteandupdatecollegebyid() throws Exception
+	void deleteandupdatecollegebyid() throws Exception
 	{
 		//Delete College By ID
 		MockHttpServletRequestBuilder mvc=MockMvcRequestBuilders
