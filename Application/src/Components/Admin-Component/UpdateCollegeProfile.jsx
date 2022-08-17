@@ -18,7 +18,6 @@ function Admindashboardupdatecollegedetails() {
             .then((res) => {
                 const Collegedetails = {
                     name: res.data.name,
-                    district: res.data.district,
                     mincutoff: res.data.mincutoff,
                     maxcutoff: res.data.maxcutoff
                 };
@@ -36,14 +35,14 @@ function Admindashboardupdatecollegedetails() {
                     navigate(-1);
                 })
                     .catch((err) => console.log(err));
-                window.location.reload();
             }
             else
             {
                 alert("College name already exists");
-                window.location.reload();
+                navigate(-1);
             }
         })
+        window.location.reload();
     }
                 
     const districts = [
