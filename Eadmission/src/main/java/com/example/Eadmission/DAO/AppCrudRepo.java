@@ -23,4 +23,9 @@ public interface AppCrudRepo extends CrudRepository<ApplnModel,Long> {
 	
 	@Query("select count(*) from ApplnModel s where s.id=:id")
 	int appnocount(@Param("id") String id);
+	
+	//check if the cutoff is available 
+	
+	@Query("select count(*) from CollegeModel s where s.mincutoff<=:hslc and s.maxcutoff>=:hslc")
+	int possible(@Param("hslc") Long hslc);
 	}

@@ -1,6 +1,5 @@
 package com.example.Eadmission.Controller;
 import java.util.List;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.Eadmission.DAO.CollegeCrudRepo;
 import com.example.Eadmission.Model.*;
 import com.example.Eadmission.Service.*;

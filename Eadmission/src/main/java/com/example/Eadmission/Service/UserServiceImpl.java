@@ -26,8 +26,8 @@ public class UserServiceImpl implements UserService{
 		userrepo.save(detail);
 		String email=detail.getEmail();
 		String body="Your Login Credentials is UserName:"+" "+detail.getUsername()+" "+"Password:"+" "+password;
-		String subject ="Login Credentials";
-		se.sendemail(email, subject, body);return "Saved";}
+		String subject ="Login Credentials for Engineering-Admissions 2022";
+		se.sendemail(email, subject, body);return "Saved Successfully";}
 		return "Username Already Exists";
 	}
 		public String existsByemail(String email) {

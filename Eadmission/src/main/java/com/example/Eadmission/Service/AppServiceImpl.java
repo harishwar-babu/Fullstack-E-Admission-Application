@@ -1,12 +1,10 @@
 package com.example.Eadmission.Service;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-//import org.springframework.web.bind.annotation.PathVariable;
 import com.example.Eadmission.DAO.*;
 import com.example.Eadmission.Model.ApplnModel;
 import com.example.Eadmission.Model.CollegeModel;
@@ -30,23 +28,30 @@ public class AppServiceImpl implements AppService {
 		String email=detail.getEmail();
 		String name=detail.getName();
 		String mbno=detail.getMbno();
+		Long hslc = detail.getHslc();
 		if(user.appcount(email, mbno,u2.getUsername())==1) {
 		logger.debug("Checking");
-		if(appcount(email,mbno))
+		if(appcount(email,mbno) && c2.possible(hslc)>=1)
 		{
 			c1.save(detail);
 			String appid=detail.getId();
-			final String sub = "Confirmation message for the submission of the form for EA-2022";
+			final String sub = "Confirmation message for the submission of the form for Engineering-Admissions 2022";
 			final String body="Hi "+name+" "+"This is to inform you that you have submitted the form"+" "+ "View the colleges based on your cutoff"+" "+"Here is the password to unlock the pdf"+" "+appid;
 			colleges(appid);
 			e1.sendemail(email, sub, body);
 			logger.info("Application Submitted SuccessFully");
 			return "CHECK WITH YOUR MAIL!!!!";
-		}logger.error("Application can be submitted inly once");  return "YOU CAN SUBMIT ONLY ONCE";
+		}
+		else if(appcount(email,mbno) && c2.possible(hslc)<1)
+		{
+			logger.info("No Colleges available");
+			return "No Colleges available for your HSLC cutoff";
+		}
+		logger.error("Application can be submitted inly once");  return "YOU CAN SUBMIT ONLY ONCE";
 		}
 		return "Enter a Valid Email and Mobile Number";}
 		catch(Exception ex) {
-			return "Not a Valid Email Does not Exists";
+			return "Email Does not Exists";
 		}
 	}
 	@Override

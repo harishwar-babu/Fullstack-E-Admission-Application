@@ -15,7 +15,9 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>18</java.version>
-		   <itext.version>RELEASE</itext.version>
+		<itext.version>RELEASE</itext.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+    	<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -97,7 +99,6 @@
         <version>1.49</version>
     </dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -106,5 +107,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

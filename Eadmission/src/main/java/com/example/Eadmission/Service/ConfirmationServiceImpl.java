@@ -35,7 +35,7 @@ public class ConfirmationServiceImpl implements ConfirmationService {
 		{
 			cc2.save(detail);
 			final String sub = "Confirmation message for the Selection of the College";
-			final String body= "Hi"+" "+record.getName()+" "+"Here is your AIEA2022 College Confirmation Allocation.. Note.. Take this during at the first day of your college";
+			final String body= "Hi"+" "+record.getName()+" "+"Here is your EA2022 College Confirmation Allocation.. Note.. Take this during at the first day of your college";
 			pdf.successMessage(name, code, cname, department, appid);
 			e1.sendemail(email, sub, body);
 			logger.info("Success");

@@ -11,7 +11,6 @@ public class EadmissionApplication {
 	public ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
-	
 	Logger log=LoggerFactory.getLogger(EadmissionApplication.class);
 	
 	public static void main(String[] args) {
